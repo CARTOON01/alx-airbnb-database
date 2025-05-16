@@ -16,7 +16,8 @@ JOIN
 JOIN 
     properties p ON b.property_id = p.property_id
 LEFT JOIN 
-    payments pay ON b.booking_id = pay.booking_id
+    payments pay ON b.booking_id = pay.booking_id;
+
 WITH BookingDetails AS (
     SELECT 
         b.booking_id,
@@ -27,6 +28,7 @@ WITH BookingDetails AS (
         b.total_price
     FROM 
         bookings b
+)
 SELECT 
     bd.booking_id,
     bd.start_date,
@@ -45,5 +47,7 @@ JOIN
 JOIN 
     properties p ON bd.property_id = p.property_id
 LEFT JOIN 
-    payments pay ON bd.booking_id = pay.booking_id
+    payments pay ON bd.booking_id = pay.booking_id;
+
+
 EXPLAIN ANALYZE SELECT * FROM bookings;
